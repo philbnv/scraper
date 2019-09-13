@@ -10,8 +10,7 @@ $product_urls = [
   'https://www.dell.com/en-us/shop/accessories/apd/580-agjp?c=us&amp%3Bl=en&amp%3Bs=dhs&amp%3Bcs=19&amp%3Bsku=580-AGJP',
 ];  
 
-// DellPageScraper extends off PageScraper to
-// scrape dell.com product pages.
+// DellPageScraper extends off PageScraper to scrape dell.com product pages.
 $myDellPageScraper = new DellPageScraper();
 
 echo '<h1>Dell Products</h1>';
@@ -24,8 +23,7 @@ foreach ($product_urls as $product_url) {
   echo '<hr>';
 }
 
-// NeweggPageScraper extends off PageScraper to
-// scrape newegg.com product pages.
+// NeweggPageScraper extends off PageScraper to scrape newegg.com product pages.
 $myNeweggPageScraper = new NeweggPageScraper();
 
 $product_urls = [

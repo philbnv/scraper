@@ -1,7 +1,7 @@
 <?php
 /**
- * Based on URL passed in, this class can determine which
- * scraper to use. It can also scrape a page using the correct
+ * Based on URL passed in, this class will determine which
+ * scraper to use. It will then scrape a page using the determined
  * scraper and return the product info into a StoreProduct object.
  */
 class RetrieveStoreProduct {
@@ -9,7 +9,11 @@ class RetrieveStoreProduct {
   private $url;
   private $scraper;
 
-  // When a URL is passed in, determine if a scraper is available.
+  /**
+   * When a URL is passed in, determine if a scraper is available.
+   * 
+   * @param string $url
+   */
   public function setUrl($url) {
     if (!empty($url) && filter_var($url, FILTER_VALIDATE_URL)) {
       $this->url = $url;
@@ -21,6 +25,11 @@ class RetrieveStoreProduct {
     }
   }
 
+  /**
+   * Will assign a scraper if one is found or return FALSE upon failure.
+   * 
+   * @return boolean
+   */
   private function _determineScraper() {
 
     if (empty($this->url))
@@ -35,9 +44,12 @@ class RetrieveStoreProduct {
     }
   }
 
-  // If valid scraper is available, then scrape
-  // with correct scraper and pass the resulting data into
-  // a StoreProduct object.
+  /**
+   * If valid scraper is available, then scrape 
+   * with correct scraper and pass the resulting data into a StoreProduct object.
+   * 
+   * @return object StoreProduct|boolean
+   */
   public function getStoreProduct() {
 
     if (empty($this->scraper))
@@ -48,6 +60,12 @@ class RetrieveStoreProduct {
     $product = $myScraper->scrape();
 
     if ($product) {
+      /**
+       * $product is an associative array, with each array 
+       * key represented as a product attribute.
+       *
+       * e.g $product['product_name'] will return a product name
+       */
       return new StoreProduct(
         ($product[$myScraper->getProductNameAttr()] ?: NULL),
         ($product[$myScraper->getProductModelAttr()] ?: NULL),
@@ -57,5 +75,4 @@ class RetrieveStoreProduct {
     else
       return FALSE;
   }
-
 }

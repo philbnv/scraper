@@ -1,5 +1,4 @@
 <?php
-
 class StoreProduct {
   private $name;
   private $model;

@@ -4,9 +4,11 @@
  */
 class NeweggPageScraper extends PageScraper {
 
-  // Product attributes used as array keys to associate a product attribute
-  // with an Xpath expression and data parsing logic.
-  // I used constants to avoid redundancy.
+  /**
+   *  Product attributes used as array keys to associate a product attribute
+   *  with an Xpath expression and data parsing logic.
+   *  I used constants to avoid redundancy.
+   */
   private const ATTR_PRODUCT_NAME = 'product_name';
   private const ATTR_PRICE = 'price';
   private const ATTR_MODEL = 'model';
@@ -20,7 +22,13 @@ class NeweggPageScraper extends PageScraper {
     ];    
   }
 
-  // Based on the Newegg product attribute, parse string to get requested data.
+  /**
+   * Based on the product attribute, parse string to get requested data.
+   * 
+   * @param  array $attribute
+   * @param  string $raw_string
+   * @return string|null
+   */
   protected function processProductData($attribute, $raw_string) {
     $val = NULL;
     if ($attribute == self::ATTR_PRODUCT_NAME) {
@@ -48,5 +56,4 @@ class NeweggPageScraper extends PageScraper {
   public function getProductModelAttr() {
     return self::ATTR_MODEL;
   }   
-
 }

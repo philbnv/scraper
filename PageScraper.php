@@ -15,7 +15,11 @@ abstract class PageScraper {
     $this->setXpathExpressions();
   }
 
-  // Set and validate URL passed in.
+  /**
+   * Set and validate URL passed in.
+   * 
+   * @param string $url
+   */
   public function setUrl($url) {
     if (!empty($url) && filter_var($url, FILTER_VALIDATE_URL))
       $this->url = $url;
@@ -23,8 +27,12 @@ abstract class PageScraper {
       $this->url = NULL;   
   }
 
-  // Scrape page and send html to parser (if there is any),
-  // Returns an associative array with product info in it or FALSE upon failure.
+
+  /**
+   * Scrape page and send HTML to parser.
+   * 
+   * @return boolean|array
+   */
   public function scrape() {
     if (is_null($this->url))
       return FALSE;
@@ -41,12 +49,15 @@ abstract class PageScraper {
     }
   }
 
-  /*
-  Using the scraped HTML and Xpath expressions,
-  traverse through the $nodes and parse data based
-  on the product attribute type. 
-  The parsing logic is defined in the child parser.
-  */
+  /**
+   * Using the scraped HTML and Xpath expressions, 
+   * traverse through the $nodes and parse data based
+   * on the product attribute type. 
+   * The parsing logic is defined in the child parser.
+   *   
+   * @param  string $html
+   * @return boolean|array
+   */
   private function _parse($html) {
 
     if (!$html || empty($this->xpath_expressions))
