@@ -19,6 +19,7 @@ foreach ($product_urls as $product_url) {
   $myDellPageScraper->setUrl($product_url);
   $product_info = $myDellPageScraper->scrape();
 
+  echo '<strong>URL:</strong> ' . $product_url . '<br><br>';
   var_dump($product_info);
   echo '<hr>';
 }
@@ -38,6 +39,7 @@ foreach ($product_urls as $product_url) {
   $myNeweggPageScraper->setUrl($product_url);
   $product_info = $myNeweggPageScraper->scrape();
 
+  echo '<strong>URL:</strong> ' . $product_url . '<br><br>';
   var_dump($product_info);
   echo '<hr>';
 }
